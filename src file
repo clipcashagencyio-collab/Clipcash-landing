@@ -1,0 +1,35 @@
+mkdir -p src
+
+cat > src/vite-env.d.ts << 'EOF'
+/// <reference types="vite/client" />
+EOF
+
+cat > src/index.css << 'EOF'
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  margin: 0;
+}
+EOF
+
+cat > src/main.tsx << 'EOF'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App";
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+EOF
